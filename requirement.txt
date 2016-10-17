@@ -1,0 +1,27 @@
+Assignment: 
+
+Your task is to create a game which we will call "BattleGolf".  
+
+The "Battle" in the title comes from the game's striking similarity to Hasbro hit Battleship. 
+
+The "Golf" in the title comes from the low scores needed to win, and the intense concentration required to play. 
+
+You are allowed to work in pairs, although you don't have to. 
+      
+Modified rules (parts left intentionally vague):
+
+You are to create a 1-player version of the game. The computer will generate the 8x8 grid, with a full fleet of ships as described in the link above. The game will consist of a player using the console to call out positions (i.e. D-4 for the fourth row and column of the grid (start at 1!!!)) to fire at ships. The game ends when all the computer's ships have been sunk. The player's score is the number of shots they took to sink all the ships.
+ 
+The BattleGolf game is intended to be run in Eclipse via the console - after entering their name, a player will be allowed to shoot at ships until he sinks the computer's whole fleet. After doing so, he is shown his score.
+     
+Grading: 
+              
+10 pts: Does it work? Is it playable?
+              
+10 pts: Design: Are there redundancies (ie multiple classes doing the same work)? Is work split into multiple classes and functions? Could the code be modified easily?
+              
+10 pts: Coding style: Are there comments, good variable names, clear functions? Do I know what's going on without an explanation?
+              
+10 pts: Testing. Can you write code which tests the individual components of the assignment? Can you write up instructions for someone to manually test parts of the game?
+ 
+This is due 11/19 at 9:00AM (the start of Thanksgiving break). I'll send out instructions on how to submit your code in a few weeks.
