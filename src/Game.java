@@ -30,6 +30,7 @@ public class Game {
 		 * If the shot was a miss, returns null
 		 * If shot was a hit, updates the board and numOfHoles accordingly
 		 */
+		return board[x][y].check(x,y) ? board[x][y] : null;
 	}
 	
 	public void printBoard(){

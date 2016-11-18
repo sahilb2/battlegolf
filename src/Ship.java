@@ -9,7 +9,9 @@ public class Ship {
 		this.row = row;
 		this.col = col;
 	}
-	
+	public boolean check(int x, int y){
+		return x == row && y == col ? true : false;
+	}
 	public String getName() {
 		return name;
 	}
