@@ -1,6 +1,6 @@
 
 public class Game {
-	
+
 	private Ship[][] board = new Ship[8][8];
 	/*
 	 * Board is randomly generated with Ships being the object
@@ -12,7 +12,7 @@ public class Game {
 	 * Total number of Ship holes used to determine when the game ends
 	 */
 	private int row,col;
-	
+
 	public int[][] createBoard(){
 		/* Create board with Math.random
 		 * 	1	Carrier		5
@@ -22,7 +22,8 @@ public class Game {
 			5	Destroyer	2
 		 * Ships cannot overlap or go out of bounds
 		 */
-		int[] ships = new int[]{5, 4, 3, 3, 2};
+		int[] shipSpace = new int[]{5, 4, 3, 3, 2};
+		String[] shipName = new String[]{"Carrier","Battleship","Cruiser","Submarine","Destroyer"};
 		int counter = 0;
 		while(counter < 5){
 			int x = (int)Math.random()*8;
@@ -31,47 +32,67 @@ public class Game {
 			boolean orien = (int)Math.random()*2 == 1;
 			if(board[x][y]==null){
 				if(orien){
-					if(ships[counter]+x < 8){
+					if(shipSpace[counter]+x < 8){
 						boolean passed = true;
-						for(int i = x; i < x + ships[counter]; i++){
+						for(int i = x; i < x + shipSpace[counter]; i++){
 							if(boards[i][y] != null)
 								passed = false;
 						}
-						if(passed)
-							//create object	
+						if(passed){
+							Ship temp = new Ship(shipName[counter],shipSpace[counter]);
+							for (int i = x; i < x + shipSpace[counter]; i++){
+								board[i][y] = temp;
+							}
+							counter++;
+						}
 					}
 				}
 				else{
-					if(ships[counter]+y < 8){
+					if(shipSpace[counter]+y < 8){
 						boolean passed = true;
-						for(int i = y; i < y + ships[counter]; i++){
+						for(int i = y; i < y + shipSpace[counter]; i++){
 							if(boards[x][i] != null)
 								passed = false;
 						}
-						if(passed)
+						if(passed){
+							Ship temp = new Ship(shipName[counter],shipSpace[counter]);
+							for (int i = y; i < y + shipSpace[counter]; i++){
+								board[x][i] = temp;
+							}
+							counter++;
+
+						}
 							//create object
 					}
 				}
 			}
 		}
 	}
-	
-	public Ship checkHit(int x, int y){
+
+	public boolean checkHit(int x, int y){
 		/*
 		 * Checks if the ship has been hit. Returns the ship that was hit
 		 * If the shot was a miss, returns null
 		 * If shot was a hit, updates the board and numOfHoles accordingly
 		 */
-		return board[x][y].check(x,y) ? board[x][y] : null;
+		if (board[x][y] == null){
+			return false;
+		}
+		else{
+			numOfHoles--;
+			board[x][y].setHoles(board[x][y].getHoles()-1);
+			board[x][y] = null;
+			return true;
+		}
 	}
-	
+
 	public void printBoard(){
 		/*
 		 * OPTIONAL:
 		 * If time permits, implement the method to print the board after every shot
 		 */
 	}
-	
+
 	public static void main(String[] args) {
 
 	}
