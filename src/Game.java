@@ -13,7 +13,7 @@ public class Game {
 	 */
 	private int row,col;
 
-	public int[][] createBoard(){
+	public void createBoard(){
 		/* Create board with Math.random
 		 * 	1	Carrier		5
 			2	Battleship	4
@@ -94,7 +94,13 @@ public class Game {
 	}
 
 	public static void main(String[] args) {
-
+		Scanner scan = new Scanner(System.in);
+		createBoard();
+		System.out.println("Enter x between 0 to 7: ");
+		int x = scan.nextInt();
+		System.out.println("Enter y between 0 to 7: ");
+		int y = scan.nextInt();
+		
 	}
 
 }
