@@ -1,78 +1,62 @@
 public class Board{
-
+    
 	protected int numholes = 17;
-    protected Ship[] ships = new Ship[]
-    	{
-    		new Ship("Carrier", 5),
-    		new Ship("Battleship", 4),
-    		new Ship("Cruiser", 3),
-    		new Ship("Submarine", 3),
-    		new Ship("Destroyer", 2),
-    	};
-    protected Ship[][] boards = new Ship[8][8];
-
+	protected int[] shipSize = new int[]{5,4,3,3,2};
+    protected int[][] boards = new int[8][8];
+    
     public Board(){
     	createBoard();
     }
-
-    public Ship hit(int x, int y){
-		if(boards[x][y]!=null){
-		    boards[x][y].setHoles((boards[x][y].getHoles())-1);
+    
+    public boolean hit(int x, int y){
+		if(boards[x][y] == 1){
+		    boards[x][y] = 0;
 		    numholes--;
-		    return boards[x][y];
+		    return true;
 		}
-		return null;
+		return false;
 	}
-
-    public void setNull(int x, int y){
-    	boards[x][y] = null;
-    }
-
+    
     public void printBoard(){
     	for (int i = 0; i < boards.length; i++){
     		for (int j = 0; j < boards[i].length; j++){
-    			if (boards[i][j] == null){
-    				System.out.print("0 ");
-    			}
-    			else{
-    				System.out.print("1 ");
-    			}
+    			System.out.print(boards[i][j]);
     		}
     		System.out.println();
     	}
     }
-
-    public Ship[][] createBoard(){
+    
+    public int[][] createBoard(){
 		int counter = 0, x = 0, y = 0;
 		while(counter < 5){
 		    x = (int)(Math.random()*8);
 		    y = (int)(Math.random()*8);
 		    boolean dir = (int)(Math.random()*2) == 0;
 		    if(dir){
-				if(y + ships[counter].getHoles() <= 8){
+				if(y + shipSize[counter] <= 8){
 				    boolean empty = true;
-				    for(int i = y; i < y + ships[counter].getHoles(); i++){
-				    	if(boards[x][i] != null)
+				    for(int i = y; i < y + shipSize[counter]; i++){
+				    	if(boards[x][i] == 1)
 				    		empty = false;
 				    }
 				    if(empty){
-				    	for(int i=y; i < y + ships[counter].getHoles(); i++){
-				    		boards[x][i] = ships[counter];
+				    	for(int i=y; i < y + shipSize[counter]; i++){
+				    		boards[x][i] = 1;
 				    	}
 				    	counter++;
 				    }
 				}
 		    }
 		    else{
-				if(x + ships[counter].getHoles() <= 8){
+				if(x + shipSize[counter] <= 8){
 				    boolean empty = true;
-				    for(int i = x; i < x + ships[counter].getHoles(); i++){
-						if(boards[i][y] != null)
+				    for(int i = x; i < x + shipSize[counter]; i++){
+						if(boards[i][y] == 1)
 						    empty = false;
 				    }
 				    if(empty){
-						for(int i=x; i < x + ships[counter].getHoles(); i++){
-						    boards[i][y] = ships[counter];
+						for(int i=x; i < x + shipSize[counter]; i++){
+						    boards[i][y] = 1;
 						}
 						counter++;
 				    }
@@ -81,4 +65,4 @@ public class Board{
 		}
 		return boards;
     }
-}
+} 
