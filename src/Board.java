@@ -1,6 +1,6 @@
 public class Board{
 
-	protected int holes = 17;
+	protected int numholes = 17;
     protected Ship[] ships = new Ship[]
     	{
     		new Ship("Carrier", 5),
@@ -15,20 +15,17 @@ public class Board{
     	createBoard();
     }
 
-    public boolean hit(int x, int y){
+    public Ship hit(int x, int y){
 		if(boards[x][y]!=null){
-		    boards[x][y].setHoles(boards[x][y].getHoles()-1);
-		    boards[x][y]=null;
-		    return true;
+		    boards[x][y].setHoles((boards[x][y].getHoles())-1);
+		    numholes--;
+		    return boards[x][y];
 		}
-		return false;
+		return null;
 	}
 
-    public boolean shipDestroyed(int shipNum){
-    	if (ships[shipNum].getHoles() == 0){
-    		return true;
-    	}
-    	return false;
+    public void setNull(int x, int y){
+    	boards[x][y] = null;
     }
 
     public void printBoard(){
@@ -44,6 +41,7 @@ public class Board{
     		System.out.println();
     	}
     }
+
     public Ship[][] createBoard(){
 		int counter = 0, x = 0, y = 0;
 		while(counter < 5){
